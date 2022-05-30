@@ -8,7 +8,6 @@ import {
     Platform,
     Appearance,
  } from "react-native";
-import Main from './Main'
 
  //useColorScheme()
 

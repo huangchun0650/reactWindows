@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-// import { useNavigation, useNavigationParam } from 'react-navigation-hooks'
+import toast from 'react-native-toast-message';
+import { ControlBar } from '../ui/ControlBar'
+import { SystemInfo } from '../ui/SystemInfo'
 import {
     AppRegistry,
     StyleSheet,
@@ -14,11 +16,20 @@ export default class Main extends Component {
     }
     
     render() {
+        toast.show({
+            type: 'success',
+            text1: 'Login Success',
+            text2: 'Hello ' + this.props.route.params.account +'👋'
+        })
+
         return (
             <View style={styles.container}>
-                <Text style={styles.textStyle}>主介面</Text>
-                <Text style={styles.textStyle}>帳號：{
-                    this.props.route.params.account}</Text>
+                <View style={styles.controlBarContainer}>
+                    <ControlBar account={this.props.route.params.account} />
+                </View>
+                <View style={styles.mainContainer}>
+                    <SystemInfo/>
+                </View>
             </View>
         )
     }
@@ -27,10 +38,18 @@ export default class Main extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        flexDirection: 'row'
     },
-    textStyle: {
-        fontSize: 18,
-        color: 'black',
-        marginRight: 10
-    }
+    controlBarContainer: {
+        flex: 1,
+        margin: '0.3%',
+        borderRadius: 5,
+        backgroundColor: 'powderblue'
+    },
+    mainContainer: {
+        flex: 3,
+        margin: '0.3%',
+        borderRadius: 5,
+        backgroundColor: 'gray'
+    },
 })
